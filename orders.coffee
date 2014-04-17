@@ -1,7 +1,8 @@
 casper  = require("casper").create()
 
-loginURL  = "https://affiliate-program.amazon.com/gp/associates/join/landing/main.html"
-reportURL = "https://affiliate-program.amazon.com/gp/associates/network/reports/report.html?ie=UTF8&deviceType=all&periodType=preSelected&preSelectedPeriod=yesterday&submit.download_XML=Download%20report%20(XML)"
+loginURL = "https://affiliate-program.amazon.com/gp/associates/join/landing/main.html"
+
+reportURL = "https://affiliate-program.amazon.com/gp/associates/network/reports/report.html?tag=&reportType=ordersReport&periodType=preSelected&preSelectedPeriod=yesterday&submit.download_XML.x=32&submit.download_XML.y=10&submit.download_XML=Download+report+%28XML%29"
 
 casper.userAgent "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)"
 
@@ -17,7 +18,7 @@ casper.then ->
 
 casper.then ->
   guid  = casper.cli.get "output"
-  fname = "tmp/#{guid}.tsv"
+  fname = "tmp/#{guid}.xml"
 
   casper.download reportURL, fname
 
